@@ -9,4 +9,5 @@ public class PocSpringAxonApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PocSpringAxonApplication.class, args);
 	}
+
 }
