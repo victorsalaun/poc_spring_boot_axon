@@ -16,6 +16,11 @@ public class Person {
     protected Person() {
     }
 
+    public Person(String lastname, String firstname) {
+        this.lastname = lastname;
+        this.firstname = firstname;
+    }
+
     public String getId() {
         return id;
     }
