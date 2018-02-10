@@ -1,6 +1,6 @@
-package com.victorsalaun.pocspringaxon.command.person;
+package com.victorsalaun.pocspringaxon.person.command;
 
-import com.victorsalaun.pocspringaxon.query.person.PersonDocument;
+import com.victorsalaun.pocspringaxon.person.PersonDocument;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 

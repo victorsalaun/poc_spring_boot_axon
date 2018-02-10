@@ -1,4 +1,4 @@
-package com.victorsalaun.pocspringaxon.command.person;
+package com.victorsalaun.pocspringaxon.person.command;
 
 final class PersonCreatedEvent {
 
@@ -24,4 +24,5 @@ final class PersonCreatedEvent {
     public String getFirstname() {
         return firstname;
     }
+
 }

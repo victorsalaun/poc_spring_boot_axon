@@ -1,4 +1,4 @@
-package com.victorsalaun.pocspringaxon.command.person;
+package com.victorsalaun.pocspringaxon.person.command;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;

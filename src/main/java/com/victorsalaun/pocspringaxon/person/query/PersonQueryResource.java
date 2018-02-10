@@ -1,5 +1,6 @@
-package com.victorsalaun.pocspringaxon.query.person;
+package com.victorsalaun.pocspringaxon.person.query;
 
+import com.victorsalaun.pocspringaxon.person.PersonEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class PersonQueryResource {
 
     @GetMapping()
     @ResponseBody
-    public List<Person> getPersons(@RequestParam(required = false) String lastname, @RequestParam(required = false) String firstname) {
+    public List<PersonEntity> getPersons(@RequestParam(required = false) String lastname, @RequestParam(required = false) String firstname) {
         if (!StringUtils.isEmpty(lastname) || !StringUtils.isEmpty(firstname)) {
             LOGGER.debug("Search Person lastname: {}, firstname: {}", lastname, firstname);
             return personQueryService.search(lastname, firstname);
@@ -36,7 +37,7 @@ public class PersonQueryResource {
 
     @GetMapping(value = "/{id}")
     @ResponseBody
-    public Person getPerson(@PathVariable String id) {
+    public PersonEntity getPerson(@PathVariable String id) {
         LOGGER.debug("Get Person #{}", id);
         return personQueryService.findOne(id);
     }

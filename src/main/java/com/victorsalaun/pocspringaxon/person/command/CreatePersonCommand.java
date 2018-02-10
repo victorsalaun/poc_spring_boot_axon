@@ -1,5 +1,6 @@
-package com.victorsalaun.pocspringaxon.command.person;
+package com.victorsalaun.pocspringaxon.person.command;
 
+import com.victorsalaun.pocspringaxon.person.PersonDto;
 import org.hibernate.validator.constraints.NotBlank;
 
 final class CreatePersonCommand {

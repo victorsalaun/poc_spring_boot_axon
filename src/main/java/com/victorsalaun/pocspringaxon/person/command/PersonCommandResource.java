@@ -1,5 +1,6 @@
-package com.victorsalaun.pocspringaxon.command.person;
+package com.victorsalaun.pocspringaxon.person.command;
 
+import com.victorsalaun.pocspringaxon.person.PersonDto;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

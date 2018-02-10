@@ -1,4 +1,4 @@
-package com.victorsalaun.pocspringaxon.query.person;
+package com.victorsalaun.pocspringaxon.person;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Person {
+public class PersonEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,10 +16,10 @@ public class Person {
 
     private String firstname;
 
-    protected Person() {
+    protected PersonEntity() {
     }
 
-    public Person(String lastname, String firstname) {
+    public PersonEntity(String lastname, String firstname) {
         this.lastname = lastname;
         this.firstname = firstname;
     }

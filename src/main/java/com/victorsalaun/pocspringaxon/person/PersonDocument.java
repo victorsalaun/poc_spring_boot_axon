@@ -1,4 +1,4 @@
-package com.victorsalaun.pocspringaxon.query.person;
+package com.victorsalaun.pocspringaxon.person;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 

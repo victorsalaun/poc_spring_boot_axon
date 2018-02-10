@@ -1,7 +1,7 @@
-package com.victorsalaun.pocspringaxon.command.person;
+package com.victorsalaun.pocspringaxon.person.command;
 
-import com.victorsalaun.pocspringaxon.query.person.Person;
-import com.victorsalaun.pocspringaxon.query.person.PersonDocument;
+import com.victorsalaun.pocspringaxon.person.PersonEntity;
+import com.victorsalaun.pocspringaxon.person.PersonDocument;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class PersonCommandEventHandler {
 
     @EventSourcingHandler
     public void on(PersonCreatedEvent event) {
-        Person person = personCommandRepository.save(new Person(event.getLastname(), event.getFirstname()));
+        PersonEntity person = personCommandRepository.save(new PersonEntity(event.getLastname(), event.getFirstname()));
         PersonDocument personCommandDocument = personCommandSearchRepository.save(new PersonDocument(person.getId(), event.getLastname(), event.getFirstname()));
     }
 

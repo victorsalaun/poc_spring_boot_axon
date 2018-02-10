@@ -1,4 +1,4 @@
-package com.victorsalaun.pocspringaxon.command.person;
+package com.victorsalaun.pocspringaxon.person;
 
 public class PersonDto {
 

@@ -1,5 +1,7 @@
-package com.victorsalaun.pocspringaxon.query.person;
+package com.victorsalaun.pocspringaxon.person.query;
 
+import com.victorsalaun.pocspringaxon.person.PersonEntity;
+import com.victorsalaun.pocspringaxon.person.PersonDocument;
 import org.axonframework.queryhandling.QueryHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +28,7 @@ public class PersonQueryHandler {
     }
 
     @QueryHandler(queryName = "PersonsList")
-    public List<Person> handlePersonsList() {
+    public List<PersonEntity> handlePersonsList() {
         LOGGER.debug("Handling query PersonsList");
         return personQueryRepository.findAll();
     }
@@ -47,7 +49,7 @@ public class PersonQueryHandler {
     }
 
     @QueryHandler(queryName = "PersonById")
-    public Person handlePersonById(Long id) {
+    public PersonEntity handlePersonById(Long id) {
         LOGGER.debug("Handling query PersonById #{}", id);
         return personQueryRepository.findOne(id);
     }
