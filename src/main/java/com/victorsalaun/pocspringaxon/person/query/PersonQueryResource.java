@@ -37,7 +37,7 @@ public class PersonQueryResource {
 
     @GetMapping(value = "/{id}")
     @ResponseBody
-    public PersonEntity getPerson(@PathVariable String id) {
+    public PersonEntity getPerson(@PathVariable Long id) {
         LOGGER.debug("Get Person #{}", id);
         return personQueryService.findOne(id);
     }

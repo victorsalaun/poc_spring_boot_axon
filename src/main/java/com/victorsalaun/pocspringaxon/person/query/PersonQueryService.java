@@ -28,8 +28,8 @@ public class PersonQueryService {
         }
     }
 
-    public PersonEntity findOne(String id) {
-        CompletableFuture<PersonEntity> person = queryGateway.send(id, "PersonById", PersonEntity.class);
+    public PersonEntity findOne(Long id) {
+        CompletableFuture<PersonEntity> person = queryGateway.send(new PersonByIdQuery(id), "PersonById", PersonEntity.class);
         try {
             return person.get();
         } catch (InterruptedException | ExecutionException e) {

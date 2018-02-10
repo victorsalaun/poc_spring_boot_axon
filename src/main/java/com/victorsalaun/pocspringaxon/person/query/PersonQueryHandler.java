@@ -49,9 +49,9 @@ public class PersonQueryHandler {
     }
 
     @QueryHandler(queryName = "PersonById")
-    public PersonEntity handlePersonById(Long id) {
-        LOGGER.debug("Handling query PersonById #{}", id);
-        return personQueryRepository.findOne(id);
+    public PersonEntity handlePersonById(PersonByIdQuery query) {
+        LOGGER.debug("Handling query PersonById #{}", query.getId());
+        return personQueryRepository.findOne(query.getId());
     }
 
 }
