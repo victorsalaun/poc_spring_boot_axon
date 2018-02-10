@@ -22,7 +22,7 @@ public class PersonQueryResource {
         this.personQueryService = personQueryService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping()
     @ResponseBody
     public List<Person> getPersons(@RequestParam(required = false) String lastname, @RequestParam(required = false) String firstname) {
         if (!StringUtils.isEmpty(lastname) || !StringUtils.isEmpty(firstname)) {

@@ -37,7 +37,7 @@ public class PersonQueryService {
     }
 
     public List<Person> search(String lastname, String firstname) {
-        CompletableFuture<List> personsList = queryGateway.send(lastname, "PersonByLastnameOrFirstname", List.class);
+        CompletableFuture<List> personsList = queryGateway.send(new PersonByLastnameAndFirstnameQuery(lastname, firstname), "PersonsSearch", List.class);
         try {
             return (List<Person>) personsList.get();
         } catch (InterruptedException | ExecutionException e) {
