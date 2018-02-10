@@ -33,10 +33,26 @@ public class PersonAggregate {
         apply(new PersonCreatedEvent(identifier, lastname, firstname));
     }
 
+    @CommandHandler
+    public PersonAggregate(DeletePersonCommand deletePersonCommand) {
+        Long id = deletePersonCommand.getId();
+
+        String identifier = IdentifierFactory.getInstance().generateIdentifier();
+
+        LOGGER.debug("Applying DeletePersonCommand: {}", identifier);
+        apply(new PersonDeletedEvent(identifier, id));
+    }
+
     @EventSourcingHandler
     private void handle(PersonCreatedEvent event) {
         identifier = event.getIdentifier();
         LOGGER.debug("Handling PersonCreatedEvent: {}", identifier);
+    }
+
+    @EventSourcingHandler
+    private void handle(PersonDeletedEvent event) {
+        identifier = event.getIdentifier();
+        LOGGER.debug("Handling PersonDeletedEvent: {}", identifier);
     }
 
 }

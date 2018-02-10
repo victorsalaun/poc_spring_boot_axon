@@ -20,9 +20,15 @@ public class PersonCommandEventHandler {
     }
 
     @EventSourcingHandler
-    public void on(PersonCreatedEvent event) {
+    public void onPersonCreatedEvent(PersonCreatedEvent event) {
         PersonEntity person = personCommandRepository.save(new PersonEntity(event.getLastname(), event.getFirstname()));
-        PersonDocument personCommandDocument = personCommandSearchRepository.save(new PersonDocument(person.getId(), event.getLastname(), event.getFirstname()));
+        personCommandSearchRepository.save(new PersonDocument(person.getId(), event.getLastname(), event.getFirstname()));
+    }
+
+    @EventSourcingHandler
+    public void onPersonDeletedEvent(PersonDeletedEvent event) {
+        personCommandRepository.delete(event.getId());
+        personCommandSearchRepository.delete(event.getId());
     }
 
 }

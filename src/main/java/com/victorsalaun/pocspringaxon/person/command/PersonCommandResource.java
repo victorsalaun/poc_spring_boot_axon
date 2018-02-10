@@ -6,13 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/api/person", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(path = "/api/person", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class PersonCommandResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonCommandResource.class);
@@ -24,10 +21,16 @@ public class PersonCommandResource {
         this.commandGateway = commandGateway;
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void createPerson(@RequestBody PersonDto person) {
-        LOGGER.debug("Received POST request on /sprints");
-        String identifier = commandGateway.sendAndWait(new CreatePersonCommand(person));
+        LOGGER.debug("Received POST request on /person {}", person.toString());
+        commandGateway.sendAndWait(new CreatePersonCommand(person));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void deletePerson(@PathVariable Long id) {
+        LOGGER.debug("Received DELETE request on /person #{}", id);
+        commandGateway.sendAndWait(new DeletePersonCommand(id));
     }
 
 }

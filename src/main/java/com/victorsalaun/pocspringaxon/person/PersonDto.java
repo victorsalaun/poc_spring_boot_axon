@@ -6,4 +6,12 @@ public class PersonDto {
 
     public String firstname;
 
+    @Override
+    public String toString() {
+        return "PersonDto{" +
+                "lastname='" + lastname + '\'' +
+                ", firstname='" + firstname + '\'' +
+                '}';
+    }
+
 }
