@@ -1,25 +1,21 @@
 package com.victorsalaun.pocspringaxon.query.person;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
 
-@Entity
-public class Person {
+@Document(indexName = "persons", type = "persons", shards = 1)
+public class PersonDocument {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String lastname;
 
     private String firstname;
 
-    protected Person() {
+    protected PersonDocument() {
     }
 
-    public Person(String lastname, String firstname) {
+    public PersonDocument(Long id, String lastname, String firstname) {
+        this.id = id;
         this.lastname = lastname;
         this.firstname = firstname;
     }

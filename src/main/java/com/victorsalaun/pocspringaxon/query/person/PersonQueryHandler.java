@@ -17,9 +17,12 @@ public class PersonQueryHandler {
 
     private final PersonQueryRepository personQueryRepository;
 
+    private final PersonQuerySearchRepository personQuerySearchRepository;
+
     @Autowired
-    public PersonQueryHandler(PersonQueryRepository personQueryRepository) {
+    public PersonQueryHandler(PersonQueryRepository personQueryRepository, PersonQuerySearchRepository personQuerySearchRepository) {
         this.personQueryRepository = personQueryRepository;
+        this.personQuerySearchRepository = personQuerySearchRepository;
     }
 
     @QueryHandler(queryName = "PersonsList")
@@ -29,22 +32,22 @@ public class PersonQueryHandler {
     }
 
     @QueryHandler(queryName = "PersonsSearch")
-    public List<Person> handlePersonsSearch(PersonByLastnameAndFirstnameQuery query) {
+    public List<PersonDocument> handlePersonsSearch(PersonByLastnameAndFirstnameQuery query) {
         LOGGER.debug("Handling query PersonsSearch lastname: {}, firstname! {}", query.getLastname(), query.getFirstname());
         if (!StringUtils.isEmpty(query.getLastname()) && !StringUtils.isEmpty(query.getFirstname())) {
-            return personQueryRepository.findByLastnameAndFirstname(query.getLastname(), query.getFirstname());
+            return personQuerySearchRepository.findByLastnameAndFirstname(query.getLastname(), query.getFirstname());
         }
         if (!StringUtils.isEmpty(query.getLastname())) {
-            return personQueryRepository.findByLastname(query.getLastname());
+            return personQuerySearchRepository.findByLastname(query.getLastname());
         }
         if (!StringUtils.isEmpty(query.getFirstname())) {
-            return personQueryRepository.findByFirstname(query.getFirstname());
+            return personQuerySearchRepository.findByFirstname(query.getFirstname());
         }
         return new ArrayList<>();
     }
 
     @QueryHandler(queryName = "PersonById")
-    public Person handlePersonById(String id) {
+    public Person handlePersonById(Long id) {
         LOGGER.debug("Handling query PersonById #{}", id);
         return personQueryRepository.findOne(id);
     }
