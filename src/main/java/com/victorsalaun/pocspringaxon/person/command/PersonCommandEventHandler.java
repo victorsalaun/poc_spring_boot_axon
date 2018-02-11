@@ -31,4 +31,10 @@ public class PersonCommandEventHandler {
         personCommandSearchRepository.delete(event.getId());
     }
 
+    @EventSourcingHandler
+    public void onPersonUpdatedEvent(PersonUpdatedEvent event) {
+        personCommandRepository.save(new PersonEntity(event.getId(), event.getLastname(), event.getFirstname()));
+        personCommandSearchRepository.save(new PersonDocument(event.getId(), event.getLastname(), event.getFirstname()));
+    }
+
 }

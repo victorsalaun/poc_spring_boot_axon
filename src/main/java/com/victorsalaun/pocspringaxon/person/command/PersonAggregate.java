@@ -43,16 +43,34 @@ public class PersonAggregate {
         apply(new PersonDeletedEvent(identifier, id));
     }
 
+    @CommandHandler
+    public PersonAggregate(UpdatePersonCommand updatePersonCommand) {
+        Long id = updatePersonCommand.getId();
+        String lastname = updatePersonCommand.getLastname();
+        String firstname = updatePersonCommand.getFirstname();
+
+        String identifier = IdentifierFactory.getInstance().generateIdentifier();
+
+        LOGGER.debug("Applying PersonUpdatedEvent: {}", identifier);
+        apply(new PersonUpdatedEvent(identifier, id, lastname, firstname));
+    }
+
     @EventSourcingHandler
-    private void handle(PersonCreatedEvent event) {
+    private void handlePersonCreatedEvent(PersonCreatedEvent event) {
         identifier = event.getIdentifier();
         LOGGER.debug("Handling PersonCreatedEvent: {}", identifier);
     }
 
     @EventSourcingHandler
-    private void handle(PersonDeletedEvent event) {
+    private void handlePersonDeletedEvent(PersonDeletedEvent event) {
         identifier = event.getIdentifier();
         LOGGER.debug("Handling PersonDeletedEvent: {}", identifier);
+    }
+
+    @EventSourcingHandler
+    private void handlePersonUpdatedEvent(PersonUpdatedEvent event) {
+        identifier = event.getIdentifier();
+        LOGGER.debug("Handling PersonUpdatedEvent: {}", identifier);
     }
 
 }

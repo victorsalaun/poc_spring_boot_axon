@@ -33,4 +33,10 @@ public class PersonCommandResource {
         commandGateway.sendAndWait(new DeletePersonCommand(id));
     }
 
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void updatePerson(@PathVariable Long id, @RequestBody PersonDto person) {
+        LOGGER.debug("Received PUT request on /person #{}: {}", person.toString());
+        commandGateway.sendAndWait(new UpdatePersonCommand(id, person));
+    }
+
 }

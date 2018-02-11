@@ -24,6 +24,12 @@ public class PersonEntity {
         this.firstname = firstname;
     }
 
+    public PersonEntity(Long id, String lastname, String firstname) {
+        this.id = id;
+        this.lastname = lastname;
+        this.firstname = firstname;
+    }
+
     public Long getId() {
         return id;
     }
